@@ -8,6 +8,10 @@ const BASE_URL = 'https://api.stripe.com';
 const app = express();
 const stripe = Stripe(SK);
 app.use(cors({ origin: true }));
+app.use((req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 app.post('/', async (req, res) => {
   const payload = {
